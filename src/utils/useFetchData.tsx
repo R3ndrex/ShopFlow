@@ -15,7 +15,7 @@ export default function useFetchData(url: string): {
         })
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error("Something went wrong");
+                    throw new Error(`Something went wrong:${response?.status}`);
                 }
                 return response.json();
             })
