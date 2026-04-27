@@ -13,7 +13,12 @@ export default function useFetchData(url: string): {
         fetch(url, {
             signal: controller.signal,
         })
-            .then((response) => response.json())
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Something went wrong");
+                }
+                return response.json();
+            })
             .then((response) => {
                 setData(response);
                 setError(null);
