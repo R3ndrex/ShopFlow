@@ -2,13 +2,18 @@ import { PlusIcon } from "@heroicons/react/24/solid";
 import { MinusIcon } from "@heroicons/react/24/solid";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import { useOutletContext } from "react-router-dom";
+import placeholderImage from "../assets/placeholder.png";
 
-import { MAX_ITEM_AMOUNT } from "../utils/consts";
+import type { SyntheticEvent } from "react";
 
-export default function CartPageItem({ item }) {
-    const [setSelectedItems, _] = useOutletContext();
+import { MAX_ITEM_AMOUNT } from "../utils/consts.js";
+import type { SelectedItemsType } from "../utils/types.js";
+import type { ContextType } from "../App.js";
 
-    function ChangeItemsAmount(item, amount) {
+export default function CartPageItem({ item }: { item: SelectedItemsType }) {
+    const [setSelectedItems]: ContextType = useOutletContext();
+
+    function changeItemsAmount(item: SelectedItemsType, amount: number) {
         setSelectedItems((prev) => {
             if (item.amount + amount <= 0) {
                 return removeItem(prev, item);
@@ -25,17 +30,30 @@ export default function CartPageItem({ item }) {
             });
         });
     }
-    const incrementAmount = (item) => ChangeItemsAmount(item, 1);
+    function incrementAmount(item: SelectedItemsType) {
+        return changeItemsAmount(item, 1);
+    }
 
-    const decrementAmount = (item) => ChangeItemsAmount(item, -1);
+    function decrementAmount(item: SelectedItemsType) {
+        return changeItemsAmount(item, -1);
+    }
 
-    const removeItem = (prev, item) =>
-        prev.filter((element) => element.title !== item.title);
+    function removeItem(prev: SelectedItemsType[], item: SelectedItemsType) {
+        return prev.filter((element) => element.id !== item.id);
+    }
 
     return (
         <li className="item-li-shopping-cart" key={item.id}>
             <h2>{item.title}</h2>
-            <img src={item.images[0]} alt={item.title} />
+            <img
+                src={item.images[0]}
+                onError={(e: SyntheticEvent<HTMLImageElement, Event>) => {
+                    const img = e.currentTarget;
+                    img.onerror = null;
+                    img.src = placeholderImage;
+                }}
+                alt={item.title}
+            />
             <p>{item.description}</p>
             <div className="flex gap-[1rem] text-center items-center pb-[1rem] pt-[1rem]">
                 <MinusIcon
