@@ -3,6 +3,8 @@ import CartPage from "./pages/CartPage.js";
 import StorePage from "./pages/StorePage.js";
 import ErrorPage from "./pages/ErrorPage.js";
 import getPagesAmount from "./utils/getPagesAmount.js";
+import { LoginPage } from "./pages/LoginPage.js";
+import { RegisterPage } from "./pages/RegisterPage.js";
 
 const route = [
     {
@@ -18,6 +20,14 @@ const route = [
             {
                 path: "shopping-cart",
                 element: <CartPage />,
+            },
+            {
+                path: "login",
+                element: <LoginPage />,
+            },
+            {
+                path: "register",
+                element: <RegisterPage />,
             },
         ],
     },
