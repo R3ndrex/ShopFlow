@@ -79,6 +79,33 @@ input[type="number"]:focus,
     width: min(90%, 450px);
 }
 
+.auth-submit-button {
+    border-radius: var(--radius-md);
+    border: 2px solid var(--color-secondary);
+    padding: 0.6em 1.4em;
+    font-size: 0.95em;
+    font-weight: 500;
+    font-family: var(--font-body);
+    background-color: var(--color-secondary-soft);
+    color: var(--color-text);
+    transition:
+        border-color var(--transition-base),
+        background-color var(--transition-base),
+        color var(--transition-base),
+        box-shadow var(--transition-base);
+}
+
+.auth-submit-button:hover {
+    border-color: var(--color-secondary-hover);
+    background-color: var(--color-secondary-hover);
+    color: var(--color-text-inverse);
+}
+.auth-submit-button:focus,
+.auth-submit-button:focus-visible {
+    outline: 3px solid var(--color-secondary-soft);
+    outline-offset: 2px;
+}
+
 button {
     border-radius: var(--radius-md);
     border: 1px solid transparent;

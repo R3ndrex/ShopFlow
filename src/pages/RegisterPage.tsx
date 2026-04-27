@@ -35,7 +35,10 @@ export function RegisterPage() {
                     name="confirmPassword"
                     id="confirmPassword"
                 />
-                <button className="self-center" type="submit">
+                <button
+                    className="self-center auth-submit-button"
+                    type="submit"
+                >
                     Register
                 </button>
             </form>

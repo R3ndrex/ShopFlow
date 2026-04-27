@@ -23,7 +23,10 @@ export function LoginPage() {
                     id="password"
                 />
 
-                <button className="self-center" type="submit">
+                <button
+                    className="self-center auth-submit-button"
+                    type="submit"
+                >
                     Login
                 </button>
                 <p className="text-center">
