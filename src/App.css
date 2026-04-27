@@ -19,6 +19,7 @@
 
     /* Secondary — warm terracotta */
     --color-secondary: #b85c38;
+    --color-secondary-hover: #ac4f2b;
     --color-secondary-soft: #f5ddd5;
 
     /* Border */
@@ -208,10 +209,6 @@
         transform: rotate(360deg);
     }
 }
-
-/*                    */
-
-/*  */
 @media screen and (max-width: 600px) {
     :root {
         font-size: 0.8rem;
