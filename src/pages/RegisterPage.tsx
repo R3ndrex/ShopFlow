@@ -1,8 +1,9 @@
+import { NavLink } from "react-router-dom";
 export function RegisterPage() {
     return (
         <main className="flex flex-col items-center ">
             <form
-                className="flex flex-col gap-[0.5rem] m-[1rem] auth-form bg-[var(--color-surface)] p-[1rem] rounded-[var(--radius-lg)]"
+                className="flex flex-col gap-[0.5em] m-[1rem] auth-form bg-[var(--color-surface)] p-[1rem] rounded-[var(--radius-lg)]"
                 action=""
                 method="post"
             >
@@ -41,6 +42,17 @@ export function RegisterPage() {
                 >
                     Register
                 </button>
+                <p className="text-center">
+                    Already have one?{" "}
+                    <NavLink
+                        className={
+                            "border-b-[var(--color-accent)] border-bottom-animation"
+                        }
+                        to={"/login"}
+                    >
+                        Login
+                    </NavLink>
+                </p>
             </form>
         </main>
     );
