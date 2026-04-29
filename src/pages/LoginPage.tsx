@@ -3,7 +3,7 @@ export function LoginPage() {
     return (
         <main className="flex flex-col items-center ">
             <form
-                className="flex flex-col gap-[0.5rem] m-[1rem] auth-form bg-[var(--color-surface)] p-[1rem] rounded-[var(--radius-lg)]"
+                className="flex flex-col gap-[0.5em] m-[1rem] auth-form bg-[var(--color-surface)] p-[1rem] rounded-[var(--radius-lg)]"
                 action=""
                 method="post"
             >
