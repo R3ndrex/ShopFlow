@@ -17,7 +17,7 @@ export default function StorePage() {
     return (
         <main>
             {loading && (
-                <div className="flex justify-center items-center">
+                <div className="mb-[5rem] flex justify-center items-center">
                     <div className="lds-dual-ring"></div>
                 </div>
             )}

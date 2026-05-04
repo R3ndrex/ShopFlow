@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 export function LoginPage() {
     return (
-        <main className="flex flex-col items-center ">
+        <main className="mb-[5rem] flex flex-col items-center ">
             <form
                 className="flex flex-col gap-[0.5em] m-[1rem] auth-form bg-[var(--color-surface)] p-[1rem] rounded-[var(--radius-lg)]"
                 action=""

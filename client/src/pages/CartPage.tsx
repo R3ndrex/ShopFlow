@@ -19,7 +19,7 @@ export default function CartPage() {
     return (
         <>
             {selectedItems.length !== 0 ? (
-                <main>
+                <main className="mb-[5rem]">
                     <ul>
                         {selectedItems.map((item) => (
                             <CartPageItem key={item.id} item={item} />
