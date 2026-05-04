@@ -59,7 +59,8 @@ input[type="number"] {
     font-size: 0.95em;
 }
 
-.auth-form input {
+.auth-form input,
+.navbar input {
     border: 2px solid var(--color-bg);
     font-family: var(--font-body);
     font-size: 0.95em;
@@ -72,13 +73,16 @@ input[type="number"] {
 
 input[type="number"]:focus,
 .auth-form input:focus,
-.border-bottom-animation:hover {
+.border-bottom-animation:hover,
+.navbar input:focus {
     border-color: var(--color-border-focus);
 }
 .auth-form {
     width: min(90%, 450px);
 }
-
+main {
+    margin-top: 5rem;
+}
 .auth-submit-button {
     border-radius: var(--radius-md);
     border: 2px solid var(--color-secondary);
