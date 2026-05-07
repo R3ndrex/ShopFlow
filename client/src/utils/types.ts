@@ -1,19 +1,3 @@
-export interface ProductType {
-    id: number;
-    title: string;
-    slug: string;
-    price: number;
-    description: string;
-    category?: {
-        id: number;
-        name: string;
-        slug: string;
-        image: string;
-        creationAt: string;
-        updatedAt: string;
-    };
-    images: string[];
-    creationAt: string;
-    updatedAt: string;
-}
-export type SelectedItemsType = ProductType & { amount: number };
+import type { ProductDTO } from "./dto/product.dto.js";
+
+export type SelectedItemsType = ProductDTO & { amount: number };

@@ -2,9 +2,9 @@ import { useState, type SyntheticEvent } from "react";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 import placeholderImage from "../assets/placeholder.png";
-
+import type { Image } from "../utils/dto/product.dto.js";
 interface ParamTypes {
-    images: string[];
+    images: Image[];
     alt: string;
 }
 
@@ -29,7 +29,8 @@ export default function ImageSlider({ images, alt }: ParamTypes) {
         <div className="relative">
             {images.length === 1 ? (
                 <img
-                    src={images[index]}
+                    key={images[index]?.id}
+                    src={images[index]?.url}
                     alt={alt}
                     onError={(e: SyntheticEvent<HTMLImageElement, Event>) => {
                         const img = e.currentTarget;
@@ -46,7 +47,8 @@ export default function ImageSlider({ images, alt }: ParamTypes) {
                         data-testid="left-chevron"
                     />
                     <img
-                        src={images[index]}
+                        key={images[index]?.id}
+                        src={images[index]?.url}
                         alt={alt}
                         className="w-max"
                         onError={(

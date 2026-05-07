@@ -1,58 +1,43 @@
-import { useState, type FormEvent } from "react";
+import { useMemo, type FormEvent } from "react";
 import ImageSlider from "./ImageSlider.js";
 import { MAX_ITEM_AMOUNT } from "../utils/consts.js";
-import type { ProductType } from "../utils/types.js";
+import type { ProductMinimalDTO } from "../utils/dto/product.dto.js";
 import type { SetSelectedItemsType } from "../App.js";
-
 interface ParamTypes {
-    product: ProductType;
+    product: ProductMinimalDTO;
     setSelectedItems: SetSelectedItemsType;
 }
 
 export default function ItemCard({ product, setSelectedItems }: ParamTypes) {
-    const [inputValue, setinputValue] = useState("");
+    const fullProduct = useMemo(async () => {
+        return await fetch(
+            `${import.meta.env.VITE_API_URL}/product/${product.id}-${product.slug}`,
+        ).then((res) => res.json());
+    }, [product]);
 
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const amount = Number(formData.get(`${product.title}-amount`));
-        const item = {
-            ...product,
-            amount: amount,
-        };
-        if (isNaN(amount) || amount <= 0) {
-            console.error("This amount cannot be added");
-            return;
-        }
         setSelectedItems((prev) => {
-            const existingItem = prev.find((element) => element.id === item.id);
-
+            const existingItem = prev.find(
+                (element) => element.id === fullProduct.id,
+            );
             if (existingItem) {
                 return prev.map((element) =>
-                    element.id === item.id
-                        ? { ...element, amount: element.amount + item.amount }
+                    element.id === fullProduct.id
+                        ? { ...element, amount: element.amount + 1 }
                         : element,
                 );
+            } else {
+                const item = { ...fullProduct, amount: 1 };
+                return [...prev, item];
             }
-            return [...prev, item];
         });
-        setinputValue("");
     }
+
     return (
         <form onSubmit={handleSubmit} className="store-item">
-            <h2>{product.title}</h2>
-            <ImageSlider images={product.images} alt={product.title} />
-            <input
-                placeholder="Amount"
-                min={1}
-                value={inputValue}
-                max={MAX_ITEM_AMOUNT}
-                required
-                onChange={(e) => setinputValue(e.currentTarget.value)}
-                type="number"
-                name={`${product.title}-amount`}
-                id={`${product.title}-amount`}
-            />
+            <h2>{product.name}</h2>
+            <ImageSlider images={product.images} alt={product.name} />
             <div className="flex justify-between pl-[1rem] items-center">
                 <span>{product.price}$</span>
                 <button type="submit">Add to cart</button>

@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import type { ProductType } from "./types.js";
+import type { ProductDTO } from "./dto/product.dto.js";
 export default function useFetchData(url: string): {
-    data: ProductType[] | null;
+    data: ProductDTO[] | null;
     error: Error | null;
     loading: boolean;
 } {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [data, setData] = useState<ProductType[] | null>(null);
+    const [data, setData] = useState<ProductDTO[] | null>(null);
     useEffect(() => {
         const controller = new AbortController();
         fetch(url, {
@@ -20,7 +20,7 @@ export default function useFetchData(url: string): {
                 return response.json();
             })
             .then((response) => {
-                setData(response);
+                setData(response.data);
                 setError(null);
             })
             .catch((error) => {
