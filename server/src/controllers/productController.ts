@@ -19,14 +19,23 @@ class ProductController {
         });
     }
     async create(req: Request, res: Response) {
-        return res.json({ success: true, data: {} });
+        const { name, price } = req.body;
+        const createdProduct = await productService.createProduct();
+        return res.json({ success: true, data: createdProduct });
     }
     async getAll(_: Request, res: Response) {
         const products = await productService.getAllProducts();
         return res.json({ success: true, data: products });
     }
-    async delete(req: Request, res: Response) {
-        return res.json({ success: true, data: {} });
+    async delete(req: Request, res: Response, next: NextFunction) {
+        const { idSlug } = req.params;
+        const id = String(idSlug)?.slice(0, UUIDLENGTH);
+        const slug = String(idSlug)?.slice(UUIDLENGTH + 1);
+        if (!id || !slug) {
+            return next(ApiError.notFound("Id or slug in not defined"));
+        }
+        const deletedProduct = await productService.deleteProduct(id, slug);
+        return res.json({ success: true, data: deletedProduct });
     }
 }
 export default new ProductController();
