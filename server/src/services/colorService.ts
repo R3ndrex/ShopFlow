@@ -13,18 +13,20 @@ class ColorService {
         }));
     }
     async deleteColor(id: string) {
-        return await prisma.color.delete({
+        const deletedColor = await prisma.color.delete({
             where: {
                 id,
             },
         });
+        return { id: deletedColor.id, name: deletedColor.name };
     }
     async createColor(name: string) {
-        return await prisma.color.create({
+        const createdColor = await prisma.color.create({
             data: {
                 name,
             },
         });
+        return { id: createdColor.id, name: createdColor.name };
     }
 }
 export default new ColorService();

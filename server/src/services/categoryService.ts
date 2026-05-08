@@ -13,18 +13,20 @@ class CategoryService {
         }));
     }
     async deleteCategory(id: string) {
-        return await prisma.category.delete({
+        const deletedCategory = await prisma.category.delete({
             where: {
                 id,
             },
         });
+        return { id: deletedCategory.id, name: deletedCategory.name };
     }
     async createCategory(name: string) {
-        return await prisma.category.create({
+        const createdCategory = await prisma.category.create({
             data: {
                 name,
             },
         });
+        return { id: createdCategory.id, name: createdCategory.name };
     }
 }
 export default new CategoryService();

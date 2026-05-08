@@ -13,18 +13,20 @@ class SizeService {
         }));
     }
     async deleteSize(id: string) {
-        return await prisma.size.delete({
+        const deletedSize = await prisma.size.delete({
             where: {
                 id,
             },
         });
+        return { id: deletedSize.id, name: deletedSize.name };
     }
     async createSize(name: string) {
-        return await prisma.size.create({
+        const createdSize = await prisma.size.create({
             data: {
                 name,
             },
         });
+        return { id: createdSize.id, name: createdSize.name };
     }
 }
 export default new SizeService();
