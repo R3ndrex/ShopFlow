@@ -89,5 +89,56 @@ class ProductService {
             description: product?.productInfo,
         };
     }
+    async createProduct() {}
+    async deleteProduct(id: string, slug: string) {
+        const deletedProduct = await prisma.product.delete({
+            where: {
+                id,
+                slug,
+            },
+            include: {
+                variants: {
+                    include: {
+                        color: true,
+                        size: true,
+                        images: {
+                            omit: {
+                                variantId: true,
+                            },
+                        },
+                    },
+                },
+                productInfo: {
+                    omit: {
+                        productId: true,
+                    },
+                },
+                category: true,
+                ratings: {
+                    omit: {
+                        productId: true,
+                    },
+                },
+            },
+        });
+        if (!deletedProduct) {
+            throw ApiError.notFound("Product not found");
+        }
+        const defaultVariant = getDefaultVariant(deletedProduct);
+        const rating = getRating(deletedProduct);
+        return {
+            id: deletedProduct.id,
+            name: deletedProduct.name,
+            category: deletedProduct?.category.name,
+            images: defaultVariant?.images.map((i) => i.url) || [],
+            price: defaultVariant?.price,
+            size: defaultVariant?.size,
+            color: defaultVariant?.color,
+            stock: defaultVariant?.stock || 0,
+            slug: deletedProduct.slug,
+            rating,
+            description: deletedProduct?.productInfo,
+        };
+    }
 }
 export default new ProductService();
