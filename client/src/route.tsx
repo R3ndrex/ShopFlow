@@ -5,7 +5,7 @@ import ErrorPage from "./pages/ErrorPage.js";
 import getPagesAmount from "./utils/getPagesAmount.js";
 import { LoginPage } from "./pages/LoginPage.js";
 import { RegisterPage } from "./pages/RegisterPage.js";
-
+import AdminPanelPage from "./pages/AdminPanel.js";
 const route = [
     {
         path: "",
@@ -28,6 +28,10 @@ const route = [
             {
                 path: "register",
                 element: <RegisterPage />,
+            },
+            {
+                path: "admin-panel",
+                element: <AdminPanelPage />,
             },
         ],
     },

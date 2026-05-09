@@ -6,6 +6,7 @@ import {
     MagnifyingGlassIcon,
     Bars3Icon,
     ShoppingBagIcon,
+    WrenchScrewdriverIcon,
 } from "@heroicons/react/20/solid";
 import { UserCircleIcon } from "@heroicons/react/20/solid";
 import { Outlet, NavLink } from "react-router-dom";
@@ -47,7 +48,16 @@ function App() {
                                 className="flex-1 text-5xl p-[0.5em] h-full pl-[3em] w-full bg-[var(--color-bg)] outline-0 text-[var(--color-text)] rounded-[var(--radius-pill)] ml-[0.5em] mr-[0.5em]"
                             />
                         </div>
-
+                        <NavLink
+                            to="admin-panel"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "flex gap-[0.5em] pb-[0.5em] pt-[0.5em] pl-[1em] pr-[1em] text-[var(--color-accent)] ml-auto hover:text-[var(--color-accent-hover)] bg-[var(--color-accent-soft)] navlink"
+                                    : "flex pb-[0.5em] pt-[0.5em] pl-[1em] pr-[1em] text-[var(--color-text-muted)] gap-[0.5em] navlink"
+                            }
+                        >
+                            <WrenchScrewdriverIcon className="h-[2.5em]" />
+                        </NavLink>
                         <NavLink
                             to="register"
                             className={({ isActive }) =>
