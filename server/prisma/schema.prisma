@@ -51,7 +51,7 @@ model Product {
   name       String
   slug       String   @unique
   categoryId String
-  category   Category @relation(fields: [categoryId], references: [id])
+  category   Category? @relation(fields: [categoryId], references: [id])
 
   productInfo ProductInfo[]
   variants    Variant[]
@@ -65,11 +65,11 @@ model Variant {
   sizeId      String
   price       Float
   stock       Int          @default(0)
-  size        Size         @relation(fields: [sizeId], references: [id])
+  size        Size?         @relation(fields: [sizeId], references: [id])
   images      Image[]
   colorId     String
-  color       Color        @relation(fields: [colorId], references: [id])
-  product     Product      @relation(fields: [productId], references: [id])
+  color       Color?        @relation(fields: [colorId], references: [id])
+  product     Product?      @relation(fields: [productId], references: [id])
   productId   String
 }
 
