@@ -12,10 +12,10 @@ class CategoryService {
             name: category.name,
         }));
     }
-    async deleteCategory(id: string) {
+    async deleteCategory(name: string) {
         const deletedCategory = await prisma.category.delete({
             where: {
-                id,
+                name,
             },
         });
         return { id: deletedCategory.id, name: deletedCategory.name };

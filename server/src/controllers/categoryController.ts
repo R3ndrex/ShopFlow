@@ -16,11 +16,11 @@ class CategoryController {
         res.json({ succes: true, data: createdCategory });
     }
     async delete(req: Request, res: Response, next: NextFunction) {
-        const { id } = req.body;
-        if (!id) {
-            return next(ApiError.badRequest("Id is required"));
+        const { name } = req.body;
+        if (!name) {
+            return next(ApiError.badRequest("Name is required"));
         }
-        const deletedCategory = await categoryService.deleteCategory(id);
+        const deletedCategory = await categoryService.deleteCategory(name);
         res.json({ succes: true, data: deletedCategory });
     }
 }
