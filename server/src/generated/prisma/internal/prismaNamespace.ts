@@ -1288,8 +1288,8 @@ export type BasketScalarFieldEnum = (typeof BasketScalarFieldEnum)[keyof typeof 
 export const BasketItemScalarFieldEnum = {
   id: 'id',
   basketId: 'basketId',
-  variantId: 'variantId',
-  quantity: 'quantity'
+  quantity: 'quantity',
+  variantId: 'variantId'
 } as const
 
 export type BasketItemScalarFieldEnum = (typeof BasketItemScalarFieldEnum)[keyof typeof BasketItemScalarFieldEnum]
@@ -1307,12 +1307,12 @@ export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeo
 
 export const VariantScalarFieldEnum = {
   id: 'id',
-  isDefault: 'isDefault',
   sizeId: 'sizeId',
-  price: 'price',
-  stock: 'stock',
   colorId: 'colorId',
-  productId: 'productId'
+  productId: 'productId',
+  isDefault: 'isDefault',
+  price: 'price',
+  stock: 'stock'
 } as const
 
 export type VariantScalarFieldEnum = (typeof VariantScalarFieldEnum)[keyof typeof VariantScalarFieldEnum]
@@ -1385,6 +1385,14 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 

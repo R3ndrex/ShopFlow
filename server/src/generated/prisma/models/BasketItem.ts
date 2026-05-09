@@ -37,22 +37,22 @@ export type BasketItemSumAggregateOutputType = {
 export type BasketItemMinAggregateOutputType = {
   id: string | null
   basketId: string | null
-  variantId: string | null
   quantity: number | null
+  variantId: string | null
 }
 
 export type BasketItemMaxAggregateOutputType = {
   id: string | null
   basketId: string | null
-  variantId: string | null
   quantity: number | null
+  variantId: string | null
 }
 
 export type BasketItemCountAggregateOutputType = {
   id: number
   basketId: number
-  variantId: number
   quantity: number
+  variantId: number
   _all: number
 }
 
@@ -68,22 +68,22 @@ export type BasketItemSumAggregateInputType = {
 export type BasketItemMinAggregateInputType = {
   id?: true
   basketId?: true
-  variantId?: true
   quantity?: true
+  variantId?: true
 }
 
 export type BasketItemMaxAggregateInputType = {
   id?: true
   basketId?: true
-  variantId?: true
   quantity?: true
+  variantId?: true
 }
 
 export type BasketItemCountAggregateInputType = {
   id?: true
   basketId?: true
-  variantId?: true
   quantity?: true
+  variantId?: true
   _all?: true
 }
 
@@ -176,8 +176,8 @@ export type BasketItemGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 export type BasketItemGroupByOutputType = {
   id: string
   basketId: string
-  variantId: string
   quantity: number
+  variantId: string
   _count: BasketItemCountAggregateOutputType | null
   _avg: BasketItemAvgAggregateOutputType | null
   _sum: BasketItemSumAggregateOutputType | null
@@ -206,8 +206,8 @@ export type BasketItemWhereInput = {
   NOT?: Prisma.BasketItemWhereInput | Prisma.BasketItemWhereInput[]
   id?: Prisma.StringFilter<"BasketItem"> | string
   basketId?: Prisma.StringFilter<"BasketItem"> | string
-  variantId?: Prisma.StringFilter<"BasketItem"> | string
   quantity?: Prisma.IntFilter<"BasketItem"> | number
+  variantId?: Prisma.StringFilter<"BasketItem"> | string
   basket?: Prisma.XOR<Prisma.BasketScalarRelationFilter, Prisma.BasketWhereInput>
   variant?: Prisma.XOR<Prisma.VariantScalarRelationFilter, Prisma.VariantWhereInput>
 }
@@ -215,8 +215,8 @@ export type BasketItemWhereInput = {
 export type BasketItemOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   basketId?: Prisma.SortOrder
-  variantId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
+  variantId?: Prisma.SortOrder
   basket?: Prisma.BasketOrderByWithRelationInput
   variant?: Prisma.VariantOrderByWithRelationInput
 }
@@ -228,8 +228,8 @@ export type BasketItemWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.BasketItemWhereInput[]
   NOT?: Prisma.BasketItemWhereInput | Prisma.BasketItemWhereInput[]
   basketId?: Prisma.StringFilter<"BasketItem"> | string
-  variantId?: Prisma.StringFilter<"BasketItem"> | string
   quantity?: Prisma.IntFilter<"BasketItem"> | number
+  variantId?: Prisma.StringFilter<"BasketItem"> | string
   basket?: Prisma.XOR<Prisma.BasketScalarRelationFilter, Prisma.BasketWhereInput>
   variant?: Prisma.XOR<Prisma.VariantScalarRelationFilter, Prisma.VariantWhereInput>
 }, "id" | "basketId_variantId">
@@ -237,8 +237,8 @@ export type BasketItemWhereUniqueInput = Prisma.AtLeast<{
 export type BasketItemOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   basketId?: Prisma.SortOrder
-  variantId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
+  variantId?: Prisma.SortOrder
   _count?: Prisma.BasketItemCountOrderByAggregateInput
   _avg?: Prisma.BasketItemAvgOrderByAggregateInput
   _max?: Prisma.BasketItemMaxOrderByAggregateInput
@@ -252,8 +252,8 @@ export type BasketItemScalarWhereWithAggregatesInput = {
   NOT?: Prisma.BasketItemScalarWhereWithAggregatesInput | Prisma.BasketItemScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"BasketItem"> | string
   basketId?: Prisma.StringWithAggregatesFilter<"BasketItem"> | string
-  variantId?: Prisma.StringWithAggregatesFilter<"BasketItem"> | string
   quantity?: Prisma.IntWithAggregatesFilter<"BasketItem"> | number
+  variantId?: Prisma.StringWithAggregatesFilter<"BasketItem"> | string
 }
 
 export type BasketItemCreateInput = {
@@ -266,8 +266,8 @@ export type BasketItemCreateInput = {
 export type BasketItemUncheckedCreateInput = {
   id?: string
   basketId: string
-  variantId: string
   quantity?: number
+  variantId: string
 }
 
 export type BasketItemUpdateInput = {
@@ -280,15 +280,15 @@ export type BasketItemUpdateInput = {
 export type BasketItemUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   basketId?: Prisma.StringFieldUpdateOperationsInput | string
-  variantId?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  variantId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type BasketItemCreateManyInput = {
   id?: string
   basketId: string
-  variantId: string
   quantity?: number
+  variantId: string
 }
 
 export type BasketItemUpdateManyMutationInput = {
@@ -299,8 +299,8 @@ export type BasketItemUpdateManyMutationInput = {
 export type BasketItemUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   basketId?: Prisma.StringFieldUpdateOperationsInput | string
-  variantId?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  variantId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type BasketItemListRelationFilter = {
@@ -321,8 +321,8 @@ export type BasketItemBasketIdVariantIdCompoundUniqueInput = {
 export type BasketItemCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   basketId?: Prisma.SortOrder
-  variantId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
+  variantId?: Prisma.SortOrder
 }
 
 export type BasketItemAvgOrderByAggregateInput = {
@@ -332,15 +332,15 @@ export type BasketItemAvgOrderByAggregateInput = {
 export type BasketItemMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   basketId?: Prisma.SortOrder
-  variantId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
+  variantId?: Prisma.SortOrder
 }
 
 export type BasketItemMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   basketId?: Prisma.SortOrder
-  variantId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
+  variantId?: Prisma.SortOrder
 }
 
 export type BasketItemSumOrderByAggregateInput = {
@@ -447,8 +447,8 @@ export type BasketItemCreateWithoutBasketInput = {
 
 export type BasketItemUncheckedCreateWithoutBasketInput = {
   id?: string
-  variantId: string
   quantity?: number
+  variantId: string
 }
 
 export type BasketItemCreateOrConnectWithoutBasketInput = {
@@ -483,8 +483,8 @@ export type BasketItemScalarWhereInput = {
   NOT?: Prisma.BasketItemScalarWhereInput | Prisma.BasketItemScalarWhereInput[]
   id?: Prisma.StringFilter<"BasketItem"> | string
   basketId?: Prisma.StringFilter<"BasketItem"> | string
-  variantId?: Prisma.StringFilter<"BasketItem"> | string
   quantity?: Prisma.IntFilter<"BasketItem"> | number
+  variantId?: Prisma.StringFilter<"BasketItem"> | string
 }
 
 export type BasketItemCreateWithoutVariantInput = {
@@ -527,8 +527,8 @@ export type BasketItemUpdateManyWithWhereWithoutVariantInput = {
 
 export type BasketItemCreateManyBasketInput = {
   id?: string
-  variantId: string
   quantity?: number
+  variantId: string
 }
 
 export type BasketItemUpdateWithoutBasketInput = {
@@ -539,14 +539,14 @@ export type BasketItemUpdateWithoutBasketInput = {
 
 export type BasketItemUncheckedUpdateWithoutBasketInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  variantId?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  variantId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type BasketItemUncheckedUpdateManyWithoutBasketInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  variantId?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  variantId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type BasketItemCreateManyVariantInput = {
@@ -578,8 +578,8 @@ export type BasketItemUncheckedUpdateManyWithoutVariantInput = {
 export type BasketItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   basketId?: boolean
-  variantId?: boolean
   quantity?: boolean
+  variantId?: boolean
   basket?: boolean | Prisma.BasketDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.VariantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["basketItem"]>
@@ -587,8 +587,8 @@ export type BasketItemSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type BasketItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   basketId?: boolean
-  variantId?: boolean
   quantity?: boolean
+  variantId?: boolean
   basket?: boolean | Prisma.BasketDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.VariantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["basketItem"]>
@@ -596,8 +596,8 @@ export type BasketItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
 export type BasketItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   basketId?: boolean
-  variantId?: boolean
   quantity?: boolean
+  variantId?: boolean
   basket?: boolean | Prisma.BasketDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.VariantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["basketItem"]>
@@ -605,11 +605,11 @@ export type BasketItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 export type BasketItemSelectScalar = {
   id?: boolean
   basketId?: boolean
-  variantId?: boolean
   quantity?: boolean
+  variantId?: boolean
 }
 
-export type BasketItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "basketId" | "variantId" | "quantity", ExtArgs["result"]["basketItem"]>
+export type BasketItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "basketId" | "quantity" | "variantId", ExtArgs["result"]["basketItem"]>
 export type BasketItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   basket?: boolean | Prisma.BasketDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.VariantDefaultArgs<ExtArgs>
@@ -632,8 +632,8 @@ export type $BasketItemPayload<ExtArgs extends runtime.Types.Extensions.Internal
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     basketId: string
-    variantId: string
     quantity: number
+    variantId: string
   }, ExtArgs["result"]["basketItem"]>
   composites: {}
 }
@@ -1061,8 +1061,8 @@ export interface Prisma__BasketItemClient<T, Null = never, ExtArgs extends runti
 export interface BasketItemFieldRefs {
   readonly id: Prisma.FieldRef<"BasketItem", 'String'>
   readonly basketId: Prisma.FieldRef<"BasketItem", 'String'>
-  readonly variantId: Prisma.FieldRef<"BasketItem", 'String'>
   readonly quantity: Prisma.FieldRef<"BasketItem", 'Int'>
+  readonly variantId: Prisma.FieldRef<"BasketItem", 'String'>
 }
     
 
