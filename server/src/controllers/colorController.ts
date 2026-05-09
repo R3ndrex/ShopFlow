@@ -10,13 +10,16 @@ class ColorController {
     async create(req: Request, res: Response, next: NextFunction) {
         const { name } = req.body;
         if (!name) {
-            return next(ApiError.notFound);
+            return next(ApiError.badRequest("Name is required"));
         }
         const createdColor = await colorService.createColor(name);
         return res.json({ success: true, data: createdColor });
     }
-    async delete(req: Request, res: Response) {
+    async delete(req: Request, res: Response, next: NextFunction) {
         const { id } = req.body;
+        if (!id) {
+            return next(ApiError.badRequest("Id is required"));
+        }
         const deletedColor = await colorService.deleteColor(id);
         return res.json({ success: true, data: deletedColor });
     }

@@ -10,13 +10,16 @@ class CategoryController {
     async create(req: Request, res: Response, next: NextFunction) {
         const { name } = req.body;
         if (!name) {
-            return next(ApiError.notFound);
+            return next(ApiError.badRequest("Name is not defined"));
         }
         const createdCategory = await categoryService.createCategory(name);
         res.json({ succes: true, data: createdCategory });
     }
-    async delete(req: Request, res: Response) {
+    async delete(req: Request, res: Response, next: NextFunction) {
         const { id } = req.body;
+        if (!id) {
+            return next(ApiError.badRequest("Id is required"));
+        }
         const deletedCategory = await categoryService.deleteCategory(id);
         res.json({ succes: true, data: deletedCategory });
     }
