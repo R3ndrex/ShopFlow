@@ -231,26 +231,47 @@ async function main() {
         createdProducts.push(product);
     }
     await Promise.all([
-        prisma.rating.create({
-            data: {
+        prisma.rating.upsert({
+            where: {
+                productId_userId: {
+                    productId: createdProducts[0].id,
+                    userId: user.id,
+                },
+            },
+            create: {
                 productId: createdProducts[0].id,
                 userId: user.id,
                 rating: 4.5,
             },
+            update: {},
         }),
-        prisma.rating.create({
-            data: {
+        prisma.rating.upsert({
+            where: {
+                productId_userId: {
+                    productId: createdProducts[2].id,
+                    userId: user.id,
+                },
+            },
+            create: {
                 productId: createdProducts[2].id,
                 userId: user.id,
                 rating: 5.0,
             },
+            update: {},
         }),
-        prisma.rating.create({
-            data: {
+        prisma.rating.upsert({
+            where: {
+                productId_userId: {
+                    productId: createdProducts[4].id,
+                    userId: user.id,
+                },
+            },
+            create: {
                 productId: createdProducts[4].id,
                 userId: user.id,
                 rating: 4.0,
             },
+            update: {},
         }),
     ]);
 
