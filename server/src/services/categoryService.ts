@@ -13,11 +13,22 @@ class CategoryService {
         }));
     }
     async deleteCategory(name: string) {
-        const deletedCategory = await prisma.category.delete({
-            where: {
-                name,
-            },
+        const deletedCategory = await prisma.$transaction(async (tx) => {
+            const category = await tx.category.findFirst({ where: { name } });
+            if (!category) {
+                throw ApiError.badRequest("Category not found");
+            }
+            await tx.product.updateMany({
+                where: {
+                    categoryId: category.id,
+                },
+                data: {
+                    categoryId: null,
+                },
+            });
+            return await tx.category.delete({ where: { id: category.id } });
         });
+
         return { id: deletedCategory.id, name: deletedCategory.name };
     }
     async createCategory(name: string) {
