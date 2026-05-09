@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -12,18 +7,13 @@ datasource db {
   provider = "postgresql"
 }
 
-enum Role {
-  ADMIN
-  USER
-}
-
 model User {
   id       String   @id @default(uuid())
   email    String   @unique
   password String
   role     Role     @default(USER)
-  ratings  Rating[]
   basket   Basket?
+  ratings  Rating[]
 }
 
 model Basket {
@@ -34,52 +24,49 @@ model Basket {
 }
 
 model BasketItem {
-  id        String @id @default(uuid())
+  id        String  @id @default(uuid())
   basketId  String
+  quantity  Int     @default(1)
   variantId String
-  quantity  Int    @default(1)
-
-  basket  Basket  @relation(fields: [basketId], references: [id])
-  variant Variant @relation(fields: [variantId], references: [id])
+  basket    Basket  @relation(fields: [basketId], references: [id])
+  variant   Variant @relation(fields: [variantId], references: [id])
 
   @@unique([basketId, variantId])
 }
 
 model Product {
-  id String @id @default(uuid())
-
-  name       String
-  slug       String   @unique
-  categoryId String
-  category   Category? @relation(fields: [categoryId], references: [id])
-
+  id          String        @id @default(uuid())
+  name        String
+  slug        String        @unique
+  categoryId  String?
+  category    Category?     @relation(fields: [categoryId], references: [id])
   productInfo ProductInfo[]
-  variants    Variant[]
   ratings     Rating[]
+  variants    Variant[]
 }
 
 model Variant {
   id          String       @id @default(uuid())
-  isDefault   Boolean      @default(false)
-  basketItems BasketItem[]
   sizeId      String
+  colorId     String
+  productId   String
+  isDefault   Boolean      @default(false)
   price       Float
   stock       Int          @default(0)
-  size        Size?         @relation(fields: [sizeId], references: [id])
+  basketItems BasketItem[]
   images      Image[]
-  colorId     String
-  color       Color?        @relation(fields: [colorId], references: [id])
-  product     Product?      @relation(fields: [productId], references: [id])
-  productId   String
+  color       Color        @relation(fields: [colorId], references: [id])
+  product     Product      @relation(fields: [productId], references: [id])
+  size        Size         @relation(fields: [sizeId], references: [id])
 }
 
 model Rating {
   id        String  @id @default(uuid())
   productId String
   userId    String
-  user      User    @relation(fields: [userId], references: [id])
-  product   Product @relation(fields: [productId], references: [id])
   rating    Float   @default(0.0)
+  product   Product @relation(fields: [productId], references: [id])
+  user      User    @relation(fields: [userId], references: [id])
 
   @@unique([productId, userId])
 }
@@ -87,9 +74,9 @@ model Rating {
 model ProductInfo {
   id          String  @id @default(uuid())
   productId   String
-  product     Product @relation(fields: [productId], references: [id])
   description String
   title       String
+  product     Product @relation(fields: [productId], references: [id])
 }
 
 model Category {
@@ -115,4 +102,9 @@ model Image {
   url       String  @unique
   variantId String
   variant   Variant @relation(fields: [variantId], references: [id])
+}
+
+enum Role {
+  ADMIN
+  USER
 }
