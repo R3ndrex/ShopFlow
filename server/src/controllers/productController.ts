@@ -28,7 +28,7 @@ class ProductController {
         return res.json({ success: true, data: products });
     }
     async delete(req: Request, res: Response, next: NextFunction) {
-        const { idSlug } = req.params;
+        const { idSlug } = req.body;
         const id = String(idSlug)?.slice(0, UUIDLENGTH);
         const slug = String(idSlug)?.slice(UUIDLENGTH + 1);
         if (!id || !slug) {
