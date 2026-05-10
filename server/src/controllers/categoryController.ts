@@ -5,7 +5,7 @@ import ApiError from "../error/ApiError.js";
 class CategoryController {
     async getAll(req: Request, res: Response) {
         const categories = await categoryService.getAllCategories();
-        res.json({ succes: true, data: categories });
+        return res.json({ succes: true, data: categories });
     }
     async create(req: Request, res: Response, next: NextFunction) {
         const { name } = req.body;
@@ -13,15 +13,19 @@ class CategoryController {
             return next(ApiError.badRequest("Name is not defined"));
         }
         const createdCategory = await categoryService.createCategory(name);
-        res.json({ succes: true, data: createdCategory });
+        return res.json({ succes: true, data: createdCategory });
     }
-    async delete(req: Request, res: Response, next: NextFunction) {
-        const { name } = req.body;
-        if (!name) {
-            return next(ApiError.badRequest("Name is required"));
+    async delete(
+        req: Request<{ id: string }>,
+        res: Response,
+        next: NextFunction,
+    ) {
+        let { id } = req.params;
+        if (!id) {
+            return next(ApiError.badRequest("Id is required"));
         }
-        const deletedCategory = await categoryService.deleteCategory(name);
-        res.json({ succes: true, data: deletedCategory });
+        const deletedCategory = await categoryService.deleteCategory(id);
+        return res.json({ succes: true, data: deletedCategory });
     }
 }
 export default new CategoryController();
