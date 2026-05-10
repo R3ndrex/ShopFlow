@@ -48,12 +48,13 @@ export function getDefaultVariant(
     product: ProductMinimal,
 ): ProductMinimal["variants"][number];
 export function getDefaultVariant(product: ProductMinimal) {
-    return product?.variants.find((v) => v.isDefault) || product?.variants[0];
+    return product.variants.find((v) => v.isDefault) || product.variants[0];
 }
 
 export function getRating(product: ProductMinimal) {
-    return product?.ratings.reduce(
+    const sum = product.ratings.reduce(
         (acc, current) => acc + Number(current.rating),
         0,
     );
+    return sum / product.ratings.length;
 }
