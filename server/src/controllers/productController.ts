@@ -19,8 +19,14 @@ class ProductController {
         });
     }
     async create(req: Request, res: Response) {
-        const { name, price } = req.body;
-        const createdProduct = await productService.createProduct();
+        const { name, slug, variants, categoryId, productInfo } = req.body;
+        const createdProduct = await productService.createProduct({
+            name,
+            slug,
+            variants,
+            categoryId,
+            productInfo,
+        });
         return res.json({ success: true, data: createdProduct });
     }
     async getAll(_: Request, res: Response) {
@@ -28,7 +34,7 @@ class ProductController {
         return res.json({ success: true, data: products });
     }
     async delete(req: Request, res: Response, next: NextFunction) {
-        const { idSlug } = req.body;
+        const { idSlug } = req.params;
         const id = String(idSlug)?.slice(0, UUIDLENGTH);
         const slug = String(idSlug)?.slice(UUIDLENGTH + 1);
         if (!id || !slug) {
