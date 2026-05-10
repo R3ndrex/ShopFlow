@@ -231,9 +231,9 @@ export type ColorUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type ColorScalarRelationFilter = {
-  is?: Prisma.ColorWhereInput
-  isNot?: Prisma.ColorWhereInput
+export type ColorNullableScalarRelationFilter = {
+  is?: Prisma.ColorWhereInput | null
+  isNot?: Prisma.ColorWhereInput | null
 }
 
 export type ColorCountOrderByAggregateInput = {
@@ -257,10 +257,12 @@ export type ColorCreateNestedOneWithoutVariantsInput = {
   connect?: Prisma.ColorWhereUniqueInput
 }
 
-export type ColorUpdateOneRequiredWithoutVariantsNestedInput = {
+export type ColorUpdateOneWithoutVariantsNestedInput = {
   create?: Prisma.XOR<Prisma.ColorCreateWithoutVariantsInput, Prisma.ColorUncheckedCreateWithoutVariantsInput>
   connectOrCreate?: Prisma.ColorCreateOrConnectWithoutVariantsInput
   upsert?: Prisma.ColorUpsertWithoutVariantsInput
+  disconnect?: Prisma.ColorWhereInput | boolean
+  delete?: Prisma.ColorWhereInput | boolean
   connect?: Prisma.ColorWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ColorUpdateToOneWithWhereWithoutVariantsInput, Prisma.ColorUpdateWithoutVariantsInput>, Prisma.ColorUncheckedUpdateWithoutVariantsInput>
 }

@@ -197,8 +197,8 @@ export type VariantGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type VariantGroupByOutputType = {
   id: string
-  sizeId: string
-  colorId: string
+  sizeId: string | null
+  colorId: string | null
   productId: string
   isDefault: boolean
   price: number
@@ -230,23 +230,23 @@ export type VariantWhereInput = {
   OR?: Prisma.VariantWhereInput[]
   NOT?: Prisma.VariantWhereInput | Prisma.VariantWhereInput[]
   id?: Prisma.StringFilter<"Variant"> | string
-  sizeId?: Prisma.StringFilter<"Variant"> | string
-  colorId?: Prisma.StringFilter<"Variant"> | string
+  sizeId?: Prisma.StringNullableFilter<"Variant"> | string | null
+  colorId?: Prisma.StringNullableFilter<"Variant"> | string | null
   productId?: Prisma.StringFilter<"Variant"> | string
   isDefault?: Prisma.BoolFilter<"Variant"> | boolean
   price?: Prisma.FloatFilter<"Variant"> | number
   stock?: Prisma.IntFilter<"Variant"> | number
   basketItems?: Prisma.BasketItemListRelationFilter
   images?: Prisma.ImageListRelationFilter
-  color?: Prisma.XOR<Prisma.ColorScalarRelationFilter, Prisma.ColorWhereInput>
+  color?: Prisma.XOR<Prisma.ColorNullableScalarRelationFilter, Prisma.ColorWhereInput> | null
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
-  size?: Prisma.XOR<Prisma.SizeScalarRelationFilter, Prisma.SizeWhereInput>
+  size?: Prisma.XOR<Prisma.SizeNullableScalarRelationFilter, Prisma.SizeWhereInput> | null
 }
 
 export type VariantOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  sizeId?: Prisma.SortOrder
-  colorId?: Prisma.SortOrder
+  sizeId?: Prisma.SortOrderInput | Prisma.SortOrder
+  colorId?: Prisma.SortOrderInput | Prisma.SortOrder
   productId?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
   price?: Prisma.SortOrder
@@ -263,23 +263,23 @@ export type VariantWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.VariantWhereInput | Prisma.VariantWhereInput[]
   OR?: Prisma.VariantWhereInput[]
   NOT?: Prisma.VariantWhereInput | Prisma.VariantWhereInput[]
-  sizeId?: Prisma.StringFilter<"Variant"> | string
-  colorId?: Prisma.StringFilter<"Variant"> | string
+  sizeId?: Prisma.StringNullableFilter<"Variant"> | string | null
+  colorId?: Prisma.StringNullableFilter<"Variant"> | string | null
   productId?: Prisma.StringFilter<"Variant"> | string
   isDefault?: Prisma.BoolFilter<"Variant"> | boolean
   price?: Prisma.FloatFilter<"Variant"> | number
   stock?: Prisma.IntFilter<"Variant"> | number
   basketItems?: Prisma.BasketItemListRelationFilter
   images?: Prisma.ImageListRelationFilter
-  color?: Prisma.XOR<Prisma.ColorScalarRelationFilter, Prisma.ColorWhereInput>
+  color?: Prisma.XOR<Prisma.ColorNullableScalarRelationFilter, Prisma.ColorWhereInput> | null
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
-  size?: Prisma.XOR<Prisma.SizeScalarRelationFilter, Prisma.SizeWhereInput>
+  size?: Prisma.XOR<Prisma.SizeNullableScalarRelationFilter, Prisma.SizeWhereInput> | null
 }, "id">
 
 export type VariantOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  sizeId?: Prisma.SortOrder
-  colorId?: Prisma.SortOrder
+  sizeId?: Prisma.SortOrderInput | Prisma.SortOrder
+  colorId?: Prisma.SortOrderInput | Prisma.SortOrder
   productId?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
   price?: Prisma.SortOrder
@@ -296,8 +296,8 @@ export type VariantScalarWhereWithAggregatesInput = {
   OR?: Prisma.VariantScalarWhereWithAggregatesInput[]
   NOT?: Prisma.VariantScalarWhereWithAggregatesInput | Prisma.VariantScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Variant"> | string
-  sizeId?: Prisma.StringWithAggregatesFilter<"Variant"> | string
-  colorId?: Prisma.StringWithAggregatesFilter<"Variant"> | string
+  sizeId?: Prisma.StringNullableWithAggregatesFilter<"Variant"> | string | null
+  colorId?: Prisma.StringNullableWithAggregatesFilter<"Variant"> | string | null
   productId?: Prisma.StringWithAggregatesFilter<"Variant"> | string
   isDefault?: Prisma.BoolWithAggregatesFilter<"Variant"> | boolean
   price?: Prisma.FloatWithAggregatesFilter<"Variant"> | number
@@ -311,15 +311,15 @@ export type VariantCreateInput = {
   stock?: number
   basketItems?: Prisma.BasketItemCreateNestedManyWithoutVariantInput
   images?: Prisma.ImageCreateNestedManyWithoutVariantInput
-  color: Prisma.ColorCreateNestedOneWithoutVariantsInput
+  color?: Prisma.ColorCreateNestedOneWithoutVariantsInput
   product: Prisma.ProductCreateNestedOneWithoutVariantsInput
-  size: Prisma.SizeCreateNestedOneWithoutVariantsInput
+  size?: Prisma.SizeCreateNestedOneWithoutVariantsInput
 }
 
 export type VariantUncheckedCreateInput = {
   id?: string
-  sizeId: string
-  colorId: string
+  sizeId?: string | null
+  colorId?: string | null
   productId: string
   isDefault?: boolean
   price: number
@@ -335,15 +335,15 @@ export type VariantUpdateInput = {
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   basketItems?: Prisma.BasketItemUpdateManyWithoutVariantNestedInput
   images?: Prisma.ImageUpdateManyWithoutVariantNestedInput
-  color?: Prisma.ColorUpdateOneRequiredWithoutVariantsNestedInput
+  color?: Prisma.ColorUpdateOneWithoutVariantsNestedInput
   product?: Prisma.ProductUpdateOneRequiredWithoutVariantsNestedInput
-  size?: Prisma.SizeUpdateOneRequiredWithoutVariantsNestedInput
+  size?: Prisma.SizeUpdateOneWithoutVariantsNestedInput
 }
 
 export type VariantUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  sizeId?: Prisma.StringFieldUpdateOperationsInput | string
-  colorId?: Prisma.StringFieldUpdateOperationsInput | string
+  sizeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productId?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -354,8 +354,8 @@ export type VariantUncheckedUpdateInput = {
 
 export type VariantCreateManyInput = {
   id?: string
-  sizeId: string
-  colorId: string
+  sizeId?: string | null
+  colorId?: string | null
   productId: string
   isDefault?: boolean
   price: number
@@ -371,8 +371,8 @@ export type VariantUpdateManyMutationInput = {
 
 export type VariantUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  sizeId?: Prisma.StringFieldUpdateOperationsInput | string
-  colorId?: Prisma.StringFieldUpdateOperationsInput | string
+  sizeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productId?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -606,15 +606,15 @@ export type VariantCreateWithoutBasketItemsInput = {
   price: number
   stock?: number
   images?: Prisma.ImageCreateNestedManyWithoutVariantInput
-  color: Prisma.ColorCreateNestedOneWithoutVariantsInput
+  color?: Prisma.ColorCreateNestedOneWithoutVariantsInput
   product: Prisma.ProductCreateNestedOneWithoutVariantsInput
-  size: Prisma.SizeCreateNestedOneWithoutVariantsInput
+  size?: Prisma.SizeCreateNestedOneWithoutVariantsInput
 }
 
 export type VariantUncheckedCreateWithoutBasketItemsInput = {
   id?: string
-  sizeId: string
-  colorId: string
+  sizeId?: string | null
+  colorId?: string | null
   productId: string
   isDefault?: boolean
   price: number
@@ -644,15 +644,15 @@ export type VariantUpdateWithoutBasketItemsInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   images?: Prisma.ImageUpdateManyWithoutVariantNestedInput
-  color?: Prisma.ColorUpdateOneRequiredWithoutVariantsNestedInput
+  color?: Prisma.ColorUpdateOneWithoutVariantsNestedInput
   product?: Prisma.ProductUpdateOneRequiredWithoutVariantsNestedInput
-  size?: Prisma.SizeUpdateOneRequiredWithoutVariantsNestedInput
+  size?: Prisma.SizeUpdateOneWithoutVariantsNestedInput
 }
 
 export type VariantUncheckedUpdateWithoutBasketItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  sizeId?: Prisma.StringFieldUpdateOperationsInput | string
-  colorId?: Prisma.StringFieldUpdateOperationsInput | string
+  sizeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productId?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -667,14 +667,14 @@ export type VariantCreateWithoutProductInput = {
   stock?: number
   basketItems?: Prisma.BasketItemCreateNestedManyWithoutVariantInput
   images?: Prisma.ImageCreateNestedManyWithoutVariantInput
-  color: Prisma.ColorCreateNestedOneWithoutVariantsInput
-  size: Prisma.SizeCreateNestedOneWithoutVariantsInput
+  color?: Prisma.ColorCreateNestedOneWithoutVariantsInput
+  size?: Prisma.SizeCreateNestedOneWithoutVariantsInput
 }
 
 export type VariantUncheckedCreateWithoutProductInput = {
   id?: string
-  sizeId: string
-  colorId: string
+  sizeId?: string | null
+  colorId?: string | null
   isDefault?: boolean
   price: number
   stock?: number
@@ -713,8 +713,8 @@ export type VariantScalarWhereInput = {
   OR?: Prisma.VariantScalarWhereInput[]
   NOT?: Prisma.VariantScalarWhereInput | Prisma.VariantScalarWhereInput[]
   id?: Prisma.StringFilter<"Variant"> | string
-  sizeId?: Prisma.StringFilter<"Variant"> | string
-  colorId?: Prisma.StringFilter<"Variant"> | string
+  sizeId?: Prisma.StringNullableFilter<"Variant"> | string | null
+  colorId?: Prisma.StringNullableFilter<"Variant"> | string | null
   productId?: Prisma.StringFilter<"Variant"> | string
   isDefault?: Prisma.BoolFilter<"Variant"> | boolean
   price?: Prisma.FloatFilter<"Variant"> | number
@@ -728,13 +728,13 @@ export type VariantCreateWithoutSizeInput = {
   stock?: number
   basketItems?: Prisma.BasketItemCreateNestedManyWithoutVariantInput
   images?: Prisma.ImageCreateNestedManyWithoutVariantInput
-  color: Prisma.ColorCreateNestedOneWithoutVariantsInput
+  color?: Prisma.ColorCreateNestedOneWithoutVariantsInput
   product: Prisma.ProductCreateNestedOneWithoutVariantsInput
 }
 
 export type VariantUncheckedCreateWithoutSizeInput = {
   id?: string
-  colorId: string
+  colorId?: string | null
   productId: string
   isDefault?: boolean
   price: number
@@ -777,12 +777,12 @@ export type VariantCreateWithoutColorInput = {
   basketItems?: Prisma.BasketItemCreateNestedManyWithoutVariantInput
   images?: Prisma.ImageCreateNestedManyWithoutVariantInput
   product: Prisma.ProductCreateNestedOneWithoutVariantsInput
-  size: Prisma.SizeCreateNestedOneWithoutVariantsInput
+  size?: Prisma.SizeCreateNestedOneWithoutVariantsInput
 }
 
 export type VariantUncheckedCreateWithoutColorInput = {
   id?: string
-  sizeId: string
+  sizeId?: string | null
   productId: string
   isDefault?: boolean
   price: number
@@ -823,15 +823,15 @@ export type VariantCreateWithoutImagesInput = {
   price: number
   stock?: number
   basketItems?: Prisma.BasketItemCreateNestedManyWithoutVariantInput
-  color: Prisma.ColorCreateNestedOneWithoutVariantsInput
+  color?: Prisma.ColorCreateNestedOneWithoutVariantsInput
   product: Prisma.ProductCreateNestedOneWithoutVariantsInput
-  size: Prisma.SizeCreateNestedOneWithoutVariantsInput
+  size?: Prisma.SizeCreateNestedOneWithoutVariantsInput
 }
 
 export type VariantUncheckedCreateWithoutImagesInput = {
   id?: string
-  sizeId: string
-  colorId: string
+  sizeId?: string | null
+  colorId?: string | null
   productId: string
   isDefault?: boolean
   price: number
@@ -861,15 +861,15 @@ export type VariantUpdateWithoutImagesInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   basketItems?: Prisma.BasketItemUpdateManyWithoutVariantNestedInput
-  color?: Prisma.ColorUpdateOneRequiredWithoutVariantsNestedInput
+  color?: Prisma.ColorUpdateOneWithoutVariantsNestedInput
   product?: Prisma.ProductUpdateOneRequiredWithoutVariantsNestedInput
-  size?: Prisma.SizeUpdateOneRequiredWithoutVariantsNestedInput
+  size?: Prisma.SizeUpdateOneWithoutVariantsNestedInput
 }
 
 export type VariantUncheckedUpdateWithoutImagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  sizeId?: Prisma.StringFieldUpdateOperationsInput | string
-  colorId?: Prisma.StringFieldUpdateOperationsInput | string
+  sizeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productId?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -879,8 +879,8 @@ export type VariantUncheckedUpdateWithoutImagesInput = {
 
 export type VariantCreateManyProductInput = {
   id?: string
-  sizeId: string
-  colorId: string
+  sizeId?: string | null
+  colorId?: string | null
   isDefault?: boolean
   price: number
   stock?: number
@@ -893,14 +893,14 @@ export type VariantUpdateWithoutProductInput = {
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   basketItems?: Prisma.BasketItemUpdateManyWithoutVariantNestedInput
   images?: Prisma.ImageUpdateManyWithoutVariantNestedInput
-  color?: Prisma.ColorUpdateOneRequiredWithoutVariantsNestedInput
-  size?: Prisma.SizeUpdateOneRequiredWithoutVariantsNestedInput
+  color?: Prisma.ColorUpdateOneWithoutVariantsNestedInput
+  size?: Prisma.SizeUpdateOneWithoutVariantsNestedInput
 }
 
 export type VariantUncheckedUpdateWithoutProductInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  sizeId?: Prisma.StringFieldUpdateOperationsInput | string
-  colorId?: Prisma.StringFieldUpdateOperationsInput | string
+  sizeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   stock?: Prisma.IntFieldUpdateOperationsInput | number
@@ -910,8 +910,8 @@ export type VariantUncheckedUpdateWithoutProductInput = {
 
 export type VariantUncheckedUpdateManyWithoutProductInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  sizeId?: Prisma.StringFieldUpdateOperationsInput | string
-  colorId?: Prisma.StringFieldUpdateOperationsInput | string
+  sizeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   stock?: Prisma.IntFieldUpdateOperationsInput | number
@@ -919,7 +919,7 @@ export type VariantUncheckedUpdateManyWithoutProductInput = {
 
 export type VariantCreateManySizeInput = {
   id?: string
-  colorId: string
+  colorId?: string | null
   productId: string
   isDefault?: boolean
   price: number
@@ -933,13 +933,13 @@ export type VariantUpdateWithoutSizeInput = {
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   basketItems?: Prisma.BasketItemUpdateManyWithoutVariantNestedInput
   images?: Prisma.ImageUpdateManyWithoutVariantNestedInput
-  color?: Prisma.ColorUpdateOneRequiredWithoutVariantsNestedInput
+  color?: Prisma.ColorUpdateOneWithoutVariantsNestedInput
   product?: Prisma.ProductUpdateOneRequiredWithoutVariantsNestedInput
 }
 
 export type VariantUncheckedUpdateWithoutSizeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  colorId?: Prisma.StringFieldUpdateOperationsInput | string
+  colorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productId?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -950,7 +950,7 @@ export type VariantUncheckedUpdateWithoutSizeInput = {
 
 export type VariantUncheckedUpdateManyWithoutSizeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  colorId?: Prisma.StringFieldUpdateOperationsInput | string
+  colorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productId?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -959,7 +959,7 @@ export type VariantUncheckedUpdateManyWithoutSizeInput = {
 
 export type VariantCreateManyColorInput = {
   id?: string
-  sizeId: string
+  sizeId?: string | null
   productId: string
   isDefault?: boolean
   price: number
@@ -974,12 +974,12 @@ export type VariantUpdateWithoutColorInput = {
   basketItems?: Prisma.BasketItemUpdateManyWithoutVariantNestedInput
   images?: Prisma.ImageUpdateManyWithoutVariantNestedInput
   product?: Prisma.ProductUpdateOneRequiredWithoutVariantsNestedInput
-  size?: Prisma.SizeUpdateOneRequiredWithoutVariantsNestedInput
+  size?: Prisma.SizeUpdateOneWithoutVariantsNestedInput
 }
 
 export type VariantUncheckedUpdateWithoutColorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  sizeId?: Prisma.StringFieldUpdateOperationsInput | string
+  sizeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productId?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -990,7 +990,7 @@ export type VariantUncheckedUpdateWithoutColorInput = {
 
 export type VariantUncheckedUpdateManyWithoutColorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  sizeId?: Prisma.StringFieldUpdateOperationsInput | string
+  sizeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   productId?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1047,9 +1047,9 @@ export type VariantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   stock?: boolean
   basketItems?: boolean | Prisma.Variant$basketItemsArgs<ExtArgs>
   images?: boolean | Prisma.Variant$imagesArgs<ExtArgs>
-  color?: boolean | Prisma.ColorDefaultArgs<ExtArgs>
+  color?: boolean | Prisma.Variant$colorArgs<ExtArgs>
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
-  size?: boolean | Prisma.SizeDefaultArgs<ExtArgs>
+  size?: boolean | Prisma.Variant$sizeArgs<ExtArgs>
   _count?: boolean | Prisma.VariantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["variant"]>
 
@@ -1061,9 +1061,9 @@ export type VariantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   isDefault?: boolean
   price?: boolean
   stock?: boolean
-  color?: boolean | Prisma.ColorDefaultArgs<ExtArgs>
+  color?: boolean | Prisma.Variant$colorArgs<ExtArgs>
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
-  size?: boolean | Prisma.SizeDefaultArgs<ExtArgs>
+  size?: boolean | Prisma.Variant$sizeArgs<ExtArgs>
 }, ExtArgs["result"]["variant"]>
 
 export type VariantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1074,9 +1074,9 @@ export type VariantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   isDefault?: boolean
   price?: boolean
   stock?: boolean
-  color?: boolean | Prisma.ColorDefaultArgs<ExtArgs>
+  color?: boolean | Prisma.Variant$colorArgs<ExtArgs>
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
-  size?: boolean | Prisma.SizeDefaultArgs<ExtArgs>
+  size?: boolean | Prisma.Variant$sizeArgs<ExtArgs>
 }, ExtArgs["result"]["variant"]>
 
 export type VariantSelectScalar = {
@@ -1093,20 +1093,20 @@ export type VariantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 export type VariantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   basketItems?: boolean | Prisma.Variant$basketItemsArgs<ExtArgs>
   images?: boolean | Prisma.Variant$imagesArgs<ExtArgs>
-  color?: boolean | Prisma.ColorDefaultArgs<ExtArgs>
+  color?: boolean | Prisma.Variant$colorArgs<ExtArgs>
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
-  size?: boolean | Prisma.SizeDefaultArgs<ExtArgs>
+  size?: boolean | Prisma.Variant$sizeArgs<ExtArgs>
   _count?: boolean | Prisma.VariantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type VariantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  color?: boolean | Prisma.ColorDefaultArgs<ExtArgs>
+  color?: boolean | Prisma.Variant$colorArgs<ExtArgs>
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
-  size?: boolean | Prisma.SizeDefaultArgs<ExtArgs>
+  size?: boolean | Prisma.Variant$sizeArgs<ExtArgs>
 }
 export type VariantIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  color?: boolean | Prisma.ColorDefaultArgs<ExtArgs>
+  color?: boolean | Prisma.Variant$colorArgs<ExtArgs>
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
-  size?: boolean | Prisma.SizeDefaultArgs<ExtArgs>
+  size?: boolean | Prisma.Variant$sizeArgs<ExtArgs>
 }
 
 export type $VariantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1114,14 +1114,14 @@ export type $VariantPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   objects: {
     basketItems: Prisma.$BasketItemPayload<ExtArgs>[]
     images: Prisma.$ImagePayload<ExtArgs>[]
-    color: Prisma.$ColorPayload<ExtArgs>
+    color: Prisma.$ColorPayload<ExtArgs> | null
     product: Prisma.$ProductPayload<ExtArgs>
-    size: Prisma.$SizePayload<ExtArgs>
+    size: Prisma.$SizePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    sizeId: string
-    colorId: string
+    sizeId: string | null
+    colorId: string | null
     productId: string
     isDefault: boolean
     price: number
@@ -1522,9 +1522,9 @@ export interface Prisma__VariantClient<T, Null = never, ExtArgs extends runtime.
   readonly [Symbol.toStringTag]: "PrismaPromise"
   basketItems<T extends Prisma.Variant$basketItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Variant$basketItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BasketItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   images<T extends Prisma.Variant$imagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Variant$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  color<T extends Prisma.ColorDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ColorDefaultArgs<ExtArgs>>): Prisma.Prisma__ColorClient<runtime.Types.Result.GetResult<Prisma.$ColorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  color<T extends Prisma.Variant$colorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Variant$colorArgs<ExtArgs>>): Prisma.Prisma__ColorClient<runtime.Types.Result.GetResult<Prisma.$ColorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   product<T extends Prisma.ProductDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductDefaultArgs<ExtArgs>>): Prisma.Prisma__ProductClient<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  size<T extends Prisma.SizeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SizeDefaultArgs<ExtArgs>>): Prisma.Prisma__SizeClient<runtime.Types.Result.GetResult<Prisma.$SizePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  size<T extends Prisma.Variant$sizeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Variant$sizeArgs<ExtArgs>>): Prisma.Prisma__SizeClient<runtime.Types.Result.GetResult<Prisma.$SizePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2007,6 +2007,44 @@ export type Variant$imagesArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.ImageScalarFieldEnum | Prisma.ImageScalarFieldEnum[]
+}
+
+/**
+ * Variant.color
+ */
+export type Variant$colorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Color
+   */
+  select?: Prisma.ColorSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Color
+   */
+  omit?: Prisma.ColorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ColorInclude<ExtArgs> | null
+  where?: Prisma.ColorWhereInput
+}
+
+/**
+ * Variant.size
+ */
+export type Variant$sizeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Size
+   */
+  select?: Prisma.SizeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Size
+   */
+  omit?: Prisma.SizeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SizeInclude<ExtArgs> | null
+  where?: Prisma.SizeWhereInput
 }
 
 /**
