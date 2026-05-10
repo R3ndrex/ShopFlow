@@ -20,6 +20,17 @@ class ProductController {
     }
     async create(req: Request, res: Response) {
         const { name, slug, variants, categoryId, productInfo } = req.body;
+        if (
+            !name ||
+            !slug ||
+            variants?.length <= 0 ||
+            !categoryId ||
+            productInfo?.length <= 0
+        ) {
+            throw ApiError.badRequest(
+                "Name and slug and variants and category and product info must be specified",
+            );
+        }
         const createdProduct = await productService.createProduct({
             name,
             slug,
