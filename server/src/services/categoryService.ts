@@ -5,7 +5,7 @@ class CategoryService {
     async getAllCategories() {
         const categories = await prisma.category.findMany();
         if (categories.length <= 0) {
-            throw ApiError.notFound("Colors not found");
+            throw ApiError.notFound("Categories not found");
         }
         return categories.map((category) => ({
             id: category.id,
