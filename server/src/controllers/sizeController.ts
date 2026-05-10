@@ -15,8 +15,12 @@ class SizeController {
         const createdSize = await sizeService.createSize(name);
         return res.json({ success: true, data: createdSize });
     }
-    async delete(req: Request, res: Response, next: NextFunction) {
-        const { id } = req.body;
+    async delete(
+        req: Request<{ id: string }>,
+        res: Response,
+        next: NextFunction,
+    ) {
+        const { id } = req.params;
         if (!id) {
             return next(ApiError.badRequest("Id is not defined"));
         }
