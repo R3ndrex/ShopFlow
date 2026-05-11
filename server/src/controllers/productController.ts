@@ -59,7 +59,7 @@ class ProductController {
             orderBy,
         );
 
-        return res.json({ success: true, data: products });
+        return res.json({ success: true, ...products });
     }
     async delete(req: Request, res: Response, next: NextFunction) {
         const { idSlug } = req.params;
