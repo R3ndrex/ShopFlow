@@ -40,8 +40,14 @@ class ProductController {
         });
         return res.json({ success: true, data: createdProduct });
     }
-    async getAll(_: Request, res: Response) {
-        const products = await productService.getAllProducts();
+    async getAll(req: Request<{ page: string }>, res: Response) {
+        const { page } = req.params;
+        const items_per_page = 10;
+        const products = await productService.getAllProducts(
+            Number(page),
+            items_per_page,
+        );
+
         return res.json({ success: true, data: products });
     }
     async delete(req: Request, res: Response, next: NextFunction) {

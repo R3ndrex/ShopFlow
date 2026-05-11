@@ -8,7 +8,7 @@ import {
 } from "../mappers/product.mapper.js";
 
 class ProductService {
-    async getAllProducts() {
+    async getAllProducts(page: number, items: number) {
         const products = await prisma.product.findMany({
             include: {
                 variants: {
@@ -26,6 +26,8 @@ class ProductService {
                     },
                 },
             },
+            skip: (page - 1) * items,
+            take: page * items,
         });
         if (products.length <= 0) {
             throw ApiError.notFound("Products not found");
