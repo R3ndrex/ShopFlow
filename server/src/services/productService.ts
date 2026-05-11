@@ -56,6 +56,14 @@ class ProductService {
         categoryId: string;
         productInfo: ProductInfo[];
     }) {
+        const foundProduct = await prisma.product.findUnique({
+            where: {
+                slug,
+            },
+        });
+        if (foundProduct) {
+            throw ApiError.badRequest("Product already exists");
+        }
         const createdProduct = await prisma.product.create({
             data: {
                 name,

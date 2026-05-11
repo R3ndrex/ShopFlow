@@ -21,6 +21,14 @@ class SizeService {
         return { id: deletedSize.id, name: deletedSize.name };
     }
     async createSize(name: string) {
+        const foundSize = await prisma.size.findUnique({
+            where: {
+                name,
+            },
+        });
+        if (foundSize) {
+            throw ApiError.badRequest("Size already exists");
+        }
         const createdSize = await prisma.size.create({
             data: {
                 name,

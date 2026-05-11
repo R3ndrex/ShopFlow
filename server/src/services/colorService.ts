@@ -21,6 +21,14 @@ class ColorService {
         return { id: deletedColor.id, name: deletedColor.name };
     }
     async createColor(name: string) {
+        const foundColor = await prisma.color.findUnique({
+            where: {
+                name,
+            },
+        });
+        if (foundColor) {
+            throw ApiError.badRequest("Color already exists");
+        }
         const createdColor = await prisma.color.create({
             data: {
                 name,

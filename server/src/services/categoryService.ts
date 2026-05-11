@@ -20,6 +20,15 @@ class CategoryService {
         return { id: deletedCategory.id, name: deletedCategory.name };
     }
     async createCategory(name: string) {
+        const foundCategory = await prisma.category.findFirst({
+            where: {
+                name: name,
+            },
+        });
+        if (foundCategory) {
+            throw ApiError.badRequest("Category already exists");
+        }
+
         const createdCategory = await prisma.category.create({
             data: {
                 name,
