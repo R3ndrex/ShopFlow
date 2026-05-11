@@ -8,7 +8,25 @@ import {
 } from "../mappers/product.mapper.js";
 
 class ProductService {
-    async getAllProducts(page: number, items: number) {
+    async getAllProducts(
+        page: number,
+        items: number,
+        orderValue: "name" | "popularity" = "name",
+        sortOrder: "asc" | "desc" = "desc",
+    ) {
+        let orderBy;
+        if (orderValue === "popularity") {
+            orderBy = {
+                ratings: {
+                    _count: sortOrder,
+                },
+            };
+        } else {
+            orderBy = {
+                [orderValue]: sortOrder,
+            };
+        }
+
         const products = await prisma.product.findMany({
             include: {
                 variants: {
@@ -20,15 +38,18 @@ class ProductService {
                         },
                     },
                 },
+
                 ratings: {
                     omit: {
                         productId: true,
                     },
                 },
             },
+            orderBy,
             skip: (page - 1) * items,
-            take: page * items,
+            take: items,
         });
+
         if (products.length <= 0) {
             throw ApiError.notFound("Products not found");
         }

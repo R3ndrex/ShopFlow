@@ -40,12 +40,23 @@ class ProductController {
         });
         return res.json({ success: true, data: createdProduct });
     }
-    async getAll(req: Request<{ page: string }>, res: Response) {
+    async getAll(
+        req: Request<
+            { page: string },
+            any,
+            any,
+            { orderValue?: "name" | "popularity"; orderBy?: "desc" | "asc" }
+        >,
+        res: Response,
+    ) {
+        const { orderValue, orderBy } = req.query;
         const { page } = req.params;
         const items_per_page = 10;
         const products = await productService.getAllProducts(
             Number(page),
             items_per_page,
+            orderValue,
+            orderBy,
         );
 
         return res.json({ success: true, data: products });
