@@ -83,18 +83,24 @@ model Category {
   id       String    @id @default(uuid())
   name     String    @unique
   products Product[]
+
+  @@index([name])
 }
 
 model Size {
   id       String    @id @default(uuid())
   name     String    @unique
   variants Variant[]
+
+  @@index([name])
 }
 
 model Color {
   id       String    @id @default(uuid())
   name     String    @unique
   variants Variant[]
+
+  @@index([name])
 }
 
 model Image {
